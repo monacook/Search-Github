@@ -1,20 +1,22 @@
 import React from 'react';
+import Input from '@material-ui/core/Input';
+import Button from '@material-ui/core/Button';
+// import { Octokit } from "@octokit/core";
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state={
-      error: null,
-      repos: []
-    }
-  }
 
-  // function that gets the api request from Github search api
-  // store that into state by using setState
   render(){
-    
     return (
-      <p> hello</p>
+      <div className="ui segment">
+                <form onSubmit={this.onFormSubmit} className="ui form">
+                    <div className="field">
+                        <h1>Github Search</h1>
+                        <Input type="text" value="" placeholder="Search Github"/>
+                        <Button variant="outlined" color="primary" size="small">Search</Button>
+                    </div>
+                </form>
+            </div>
+      
     )
   }
 }
