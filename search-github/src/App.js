@@ -1,20 +1,37 @@
 import React from 'react';
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state={
-      error: null,
-      repos: []
-    }
+  constructor(props) {
+  super(props);
+  this.state = {
+    value:''
+    };
   }
 
-  // function that gets the api request from Github search api
-  // store that into state by using setState
+  onChange = (e) => {
+    this.setState({value: e.target.value})
+    // console.log(this.state.value)
+  }
+
+  onSubmit = (e) => {
+   e.preventDefault()
+   console.log("hello")
+   this.props.onSubmit(this.state.value)
+  }
+  
+
   render(){
-    
+    console.log(this.state)
     return (
-      <p> hello</p>
+      <div className="ui segment">
+        <form className="ui form">
+          <div className="field">
+            <h1>Github Search</h1>
+            <input type="text" value={this.state.value} placeholder="Search Github" size="50" onChange={this.onChange}/>
+            <button onSubmit={this.onSubmit} variant="outlined" color="primary" size="small">Search</button>
+          </div>
+        </form>
+      </div> 
     )
   }
 }
