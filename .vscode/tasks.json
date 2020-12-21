@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "install",
+			"path": "search-github/",
+			"problemMatcher": [],
+			"label": "npm: install - search-github",
+			"detail": "install dependencies from package"
+		}
+	]
+}

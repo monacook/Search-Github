@@ -1,37 +1,35 @@
-import React from 'react';
+// Props go down to child
+import React, { Component } from 'react';
+import Header from './components/Header';
+import SearchBar from './components/SearchBar';
+// import Octokit  from "@octokit/core";
+import axios from 'axios';
 
-class App extends React.Component {
-  constructor(props) {
-  super(props);
-  this.state = {
-    value:''
-    };
-  }
+class App extends Component {
 
-  onChange = (e) => {
-    this.setState({value: e.target.value})
-    // console.log(this.state.value)
-  }
+onSearchSubmit = (value) => {
+  axios.get('https://api.github.com/search/users', {
+    params: { q: value },
+    headers: { 'Content-Type': 'application/json' }
+  })
+    .then(response => {
+        console.log(response)
+        console.log("hello");
+        console.log()
+    })
+    .catch(error => {
+        console.log("Error-->>")
+        console.log(error.response)
+    })
+  console.log(value)
+}
 
-  onSubmit = (e) => {
-   e.preventDefault()
-   console.log("hello")
-   this.props.onSubmit(this.state.value)
-  }
-  
-
-  render(){
-    console.log(this.state)
-    return (
-      <div className="ui segment">
-        <form className="ui form">
-          <div className="field">
-            <h1>Github Search</h1>
-            <input type="text" value={this.state.value} placeholder="Search Github" size="50" onChange={this.onChange}/>
-            <button onSubmit={this.onSubmit} variant="outlined" color="primary" size="small">Search</button>
-          </div>
-        </form>
-      </div> 
+render() {
+  return (
+    <div className="App">
+      <Header />
+      <SearchBar onSubmit={this.onSearchSubmit}/>
+    </div>
     )
   }
 }
