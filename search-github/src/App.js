@@ -2,10 +2,14 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
-// import Octokit  from "@octokit/core";
+import ListDisplay from './components/listDisplay';
 import axios from 'axios';
 
 class App extends Component {
+  state = { 
+    value: [], 
+    totalCount: []
+    }
 
 onSearchSubmit = (value) => {
   axios.get('https://api.github.com/search/users', {
@@ -13,22 +17,25 @@ onSearchSubmit = (value) => {
     headers: { 'Content-Type': 'application/json' }
   })
     .then(response => {
-        console.log(response)
-        console.log("hello");
+      this.setState({ value: response.data.items, totalCount: response.data.total_count})
+        // console.log(response)
+        // console.log("hello");
         console.log()
     })
     .catch(error => {
         console.log("Error-->>")
         console.log(error.response)
     })
-  console.log(value)
+  // console.log(value)
 }
 
 render() {
   return (
     <div className="App">
       <Header />
+      <p>Number of Search Results: {this.state.totalCount}</p>
       <SearchBar onSubmit={this.onSearchSubmit}/>
+      <ListDisplay value={this.state.value} />
     </div>
     )
   }
