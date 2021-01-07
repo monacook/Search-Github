@@ -1,9 +1,11 @@
 // Props go down to child
 import React, { Component } from 'react';
+import axios from 'axios';
+
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
 import ListDisplay from './components/listDisplay';
-import axios from 'axios';
+import './App.css'
 
 class App extends Component {
   state = { 
