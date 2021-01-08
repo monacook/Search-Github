@@ -4,6 +4,8 @@
 
 This is a project of replicating github's search feature. Having a simple search bar and implementing Github's API, users are now able to search for the users by entering the name and a list of user photos will display below. By clicking on the image, this will lead to their github profile.
 
+Link: https://monacook.github.io/Search-Github/
+
 ## Screenshots
 
 ## What I focused on
